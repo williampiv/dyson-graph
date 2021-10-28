@@ -12,3 +12,6 @@ __pycache__
 #files that might have secrets
 devices.ini
 influxdb.ini
+
+#Build/Push Script for Docker Registry
+build_push.sh

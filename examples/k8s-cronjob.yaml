@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: dyson-read-graph
+  namespace: dyson-graph
+spec:
+  schedule: "*/1 * * * *"
+  successfulJobsHistoryLimit: 5
+  failedJobsHistoryLimit: 5
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: dyson-graph
+            image: registry.yourdomain.com/home/dyson-graph:10102021
+            imagePullPolicy: IfNotPresent
+            volumeMounts:
+              - mountPath: "/devices.ini"
+                name: dyson-devices
+                subPath: devices.ini
+                readOnly: true
+              - mountPath: "/influxdb.ini"
+                name: dyson-influxdb
+                subPath: influxdb.ini
+                readOnly: true
+          restartPolicy: OnFailure
+          volumes:
+            - name: dyson-devices
+              secret:
+                secretName: dyson-devices
+            - name: dyson-influxdb
+              secret:
+                secretName: dyson-influxdb
