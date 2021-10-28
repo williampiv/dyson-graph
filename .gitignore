@@ -1,0 +1,4 @@
+dyson-venv
+.DS_Store
+__pycache__
+devices.ini
