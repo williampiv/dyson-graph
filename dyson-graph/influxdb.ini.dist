@@ -1,0 +1,6 @@
+[influxdb]
+address = 192.168.100.11
+username = someUsername
+password = somePassword
+database = someDatabase
+ssl = True

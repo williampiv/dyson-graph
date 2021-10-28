@@ -11,3 +11,4 @@ __pycache__
 
 #files that might have secrets
 devices.ini
+influxdb.ini
