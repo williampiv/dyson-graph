@@ -1,4 +1,13 @@
+#virtual-envs/venvs
 dyson-venv
+.venv
+venv
+
+#SadMac
 .DS_Store
+
+#PythonCache
 __pycache__
+
+#files that might have secrets
 devices.ini
