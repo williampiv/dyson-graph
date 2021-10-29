@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: get date for tag
+      id: tag_vars
+      run: echo ::set-output name=tag::$(date +%m%d%Y)
     - name: checkout repo
       uses: actions/checkout@v2
     - name: Log in to Docker Hub
@@ -23,4 +26,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: $(date +%m%d%Y)
+        tags: ${{steps.tag_vars.outputs.tag}}
