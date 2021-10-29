@@ -40,4 +40,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ steps.tag_vars.outputs.tag }}, latest
+        tags: ${{ github.repository }}:${{ steps.tag_vars.outputs.tag }}, ${{ github.repository }}:latest
