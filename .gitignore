@@ -6,8 +6,9 @@ venv
 #SadMac
 .DS_Store
 
-#VSCode
+#IDEs
 .vscode
+.idea
 
 #PythonCache
 __pycache__
