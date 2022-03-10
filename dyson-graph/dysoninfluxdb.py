@@ -38,6 +38,6 @@ def post_points_to_influxdb(
     )
     try:
         influx_client.write_points(points_to_post)
-    except:
+    except Exception:
         return False
     return True
