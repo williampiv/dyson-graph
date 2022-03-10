@@ -24,6 +24,8 @@ jobs:
       packages: write
 
     steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
     - name: Declare some variables
       id: vars
       shell: bash
