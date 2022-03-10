@@ -24,8 +24,10 @@ jobs:
       packages: write
 
     steps:
-    - name: define commit hash
-      run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+    - name: Declare some variables
+      id: vars
+      shell: bash
+      run: echo "::set-output name=sha_short::$(git rev-parse --short $GITHUB_SHA)"
     - name: checkout repo
       uses: actions/checkout@v2
     - name: Log in to GHCR
@@ -48,4 +50,4 @@ jobs:
         platforms: linux/amd64, linux/arm64
         context: .
         push: true
-        tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.COMMIT_HASH }}
+        tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ steps.vars.outputs.sha_short }}
