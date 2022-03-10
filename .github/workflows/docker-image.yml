@@ -24,9 +24,8 @@ jobs:
       packages: write
 
     steps:
-    - name: get date for tag
-      id: tag_vars
-      run: echo ::set-output name=tag::$(date +%m%d%Y)
+    - name: define commit hash
+      run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
     - name: checkout repo
       uses: actions/checkout@v2
     - name: Log in to GHCR
@@ -49,4 +48,4 @@ jobs:
         platforms: linux/amd64, linux/arm64
         context: .
         push: true
-        tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ steps.tag_vars.outputs.tag }}, ${{ env.REGISTRY }}/${{ github.repository }}:latest
+        tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.COMMIT_HASH }}
