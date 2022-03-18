@@ -10,9 +10,15 @@ import argparse
 def main() -> None:
     # read in the parser items
     parser = argparse.ArgumentParser(description="Graph some dysons")
-    parser.add_argument("-i", "--influxdb", action="store_true", help="Send metrics to InfluxDB")
-    parser.add_argument("-p", "--prom", choices=["push", "export"],
-                        help="Provide metrics for Prometheus, either push gateway or exporter")
+    parser.add_argument(
+        "-i", "--influxdb", action="store_true", help="Send metrics to InfluxDB"
+    )
+    parser.add_argument(
+        "-p",
+        "--prom",
+        choices=["push", "export"],
+        help="Provide metrics for Prometheus, either push gateway or exporter",
+    )
     parser.add_argument("-pi", help="prometheus pushgateway ip (for use with -p push)")
     args = parser.parse_args()
 
