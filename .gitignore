@@ -6,13 +6,10 @@ venv
 #SadMac
 .DS_Store
 
-<<<<<<< Updated upstream
 #IDEs
 .vscode
 .idea
 
-=======
->>>>>>> Stashed changes
 #PythonCache
 __pycache__
 
