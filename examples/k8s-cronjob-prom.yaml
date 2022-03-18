@@ -15,21 +15,21 @@ spec:
           - name: dyson-graph
             image: ghcr.io/williampiv/dyson-graph:14adfce
             imagePullPolicy: IfNotPresent
+            command:
+              - python3
+              - __init__.py
+              - --prom
+              - push
+              - -pi
+              - 10.10.10.10:9091
             volumeMounts:
               - mountPath: "/devices.ini"
                 name: dyson-devices
                 subPath: devices.ini
-                readOnly: true
-              - mountPath: "/influxdb.ini"
-                name: dyson-influxdb
-                subPath: influxdb.ini
                 readOnly: true
           restartPolicy: OnFailure
           volumes:
             - name: dyson-devices
               secret:
                 secretName: dyson-devices
-            - name: dyson-influxdb
-              secret:
-                secretName: dyson-influxdb
 
