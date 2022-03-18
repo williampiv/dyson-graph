@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: dyson-read-graph
+  namespace: dyson-graph
+spec:
+  schedule: "*/1 * * * *"
+  successfulJobsHistoryLimit: 5
+  failedJobsHistoryLimit: 5
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: dyson-graph
+            image: ghcr.io/williampiv/dyson-graph:14adfce
+            imagePullPolicy: IfNotPresent
+            command:
+              - python3
+              - __init__.py
+              - --prom
+              - push
+              - -pi
+              - 10.10.10.10:9091
+            volumeMounts:
+              - mountPath: "/devices.ini"
+                name: dyson-devices
+                subPath: devices.ini
+                readOnly: true
+          restartPolicy: OnFailure
+          volumes:
+            - name: dyson-devices
+              secret:
+                secretName: dyson-devices
+

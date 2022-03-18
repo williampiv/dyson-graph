@@ -13,7 +13,7 @@ spec:
         spec:
           containers:
           - name: dyson-graph
-            image: registry.yourdomain.com/home/dyson-graph:10102021
+            image: ghcr.io/williampiv/dyson-graph:14adfce
             imagePullPolicy: IfNotPresent
             volumeMounts:
               - mountPath: "/devices.ini"
